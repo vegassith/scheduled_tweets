@@ -1,7 +1,11 @@
 class MainController < ApplicationController
   def index
     # Actions go here
-    flash.now[:notice] = 'Logged in successfully...'
-    flash.now[:alert] = 'Invalid password or Email address...'
+    if session[:user_id]
+      @user = User.find_by(id: session[:user_id])
+      flash.now[:notice] = 'Logged in successfully...'
+    end
+
+
   end
 end
